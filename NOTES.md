@@ -19,6 +19,20 @@ npm install react-bootstrap bootstrap --save
 npm install --save reactfire firebase
 ```
 
+# Configure Env
+
+```sh
+# .env file
+
+REACT_APP_FIREBASE_API_KEY="_______"
+REACT_APP_FIREBASE_AUTH_DOMAIN="_______"
+REACT_APP_FIREBASE_PROJECT_ID="_______"
+REACT_APP_FIREBASE_STORAGE_BUCKET="_______"
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID="_______"
+REACT_APP_FIREBASE_APP_ID="_______"
+
+REACT_APP_FIREBASE_DATABASE_URL="_______"
+```
 
 # Usage
 
