@@ -8,7 +8,10 @@ Reproduction from scratch:
 
 ```sh
 npx create-react-app react-template-2020
+cd react-template-2020
+```
 
+```sh
 npm install react-router-bootstrap react-router-dom --save
 npm install react-bootstrap bootstrap --save
 #npm install react-ga --save
