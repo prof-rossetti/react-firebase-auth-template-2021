@@ -1,8 +1,6 @@
 
 
-
-
-## NPM
+# NPM
 
 Reproduction from scratch:
 
@@ -27,3 +25,9 @@ npm install --save reactfire firebase
 ```sh
 npm start
 ```
+
+
+
+# References
+
+  + https://github.com/WebDevSimplified/React-Firebase-Auth

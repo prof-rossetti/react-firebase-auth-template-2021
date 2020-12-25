@@ -5,20 +5,13 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route, NavLink, Redirect} from 'react-router-dom'
 import { Navbar, Nav, Row, Col, Container, Card, Alert, Button } from 'react-bootstrap'
 
+import Home from "./Home"
+import About from "./About"
+import Login from "./Login"
+
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 //ReactGA.initialize(process.env.REACT_APP_GA_TRACKER_ID, {debug: true})
-
-function Home(){
-    return (
-        <h1>Home</h1>
-    )
-}
-function About(){
-    return (
-        <h1>About</h1>
-    )
-}
 
 export default function App() {
     // ReactGA.pageview(window.location.href)
@@ -33,6 +26,7 @@ export default function App() {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ml-auto">
                             <Nav.Link href="/about">About</Nav.Link>
+                            <Nav.Link href="/login">Login</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
@@ -40,7 +34,8 @@ export default function App() {
                 <Container fluid style={{marginTop:70}}>
                     <Switch>
                         <Route exact path="/" component={Home} />
-                        <Route path="/about" component={About} />
+                        <Route exact path="/about" component={About} />
+                        <Route exact path="/login" component={Login} />
                     </Switch>
                 </Container>
 
