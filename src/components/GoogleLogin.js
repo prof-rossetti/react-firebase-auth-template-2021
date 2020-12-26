@@ -1,58 +1,47 @@
 
 
-
-
-
-
-
-import React, { useState } from 'react'
+import React from 'react'
 import { Container, Card, Button, Form } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
-
 import firebase from "firebase/app"
-//import { useAuth } from "../contexts/AuthContext"
-import { auth } from "../firebase"
+
+import app from "../firebase"
 
 export default function GoogleLogin() {
     const history = useHistory()
-
-    const [, setCurrentUser] = useState()
-    const [, setAlert] = useState()
 
     async function handleLogin(event) {
         event.preventDefault()
 
         var provider = new firebase.auth.GoogleAuthProvider()
-
         // see: https://developers.google.com/identity/protocols/oauth2/scopes
         provider.addScope("https://www.googleapis.com/auth/userinfo.email")
-        //provider.addScope("profile")
-        //provider.addScope("email")
-        //provider.addScope("openid")
 
-        auth.signInWithPopup(provider).then(function(result) {
+        app.auth().signInWithPopup(provider).then(function(result) {
             //console.log(result)
-            //console.log(result.operationType)
-
-            var token = result.credential.accessToken
-            console.log("ACCESS TOKEN", token)
+            console.log(result.operationType)
 
             var user = result.user
             console.log("USER:", user)
             //console.log(user.uid, user.displayName, user.emailuser.emailVerified,
             //    user.phoneNumber, user.photoURL, // user.refreshToken
             //)
-            setCurrentUser(user)
+            //setCurrentUser(user)
 
-            var providerId = result.additionalUserInfo.providerId
-            console.log("PROVIDER:", providerId)
-
+            //var providerId = result.additionalUserInfo.providerId
+            //console.log("PROVIDER:", providerId)
             var profile = result.additionalUserInfo.profile
             console.log("USER PROFILE:", profile)
+            //setUserProfile(profile)
+
+            var token = result.credential.accessToken
+            console.log("ACCESS TOKEN", token)
 
             //history.push("/login-success")
-            setAlert("LOGIN SUCCESS!")
-            history.push("/")
+            //setAlert("LOGIN SUCCESS!")
+            history.push("/login-success")
+
+            // pretty sure this will trigger the onAuthStateChanged listener
 
         }).catch(function(error) {
             console.error(error)
@@ -60,13 +49,13 @@ export default function GoogleLogin() {
             //var errorMessage = error.message
             //var email = error.email // The email of the user's account used.
             //var credential = error.credential // The firebase.auth.AuthCredential type that was used.
-            setAlert("LOGIN FAILURE. PLEASE TRY AGAIN.")
-            history.push("/")
+            //setAlert("LOGIN FAILURE. PLEASE TRY AGAIN.")
+            history.push("/login-failure")
         })
     }
 
     async function handleLogout() {
-        await auth.signOut()
+        await app.auth().signOut()
         console.log("LOGOUT SUCCESS")
         history.push("/logout-success")
     }

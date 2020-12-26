@@ -43,6 +43,18 @@ npm start
 
 # References
 
+## Examples
+
+Web Dev Simplified:
+  + https://www.youtube.com/watch?v=PKwu15ldZ7k
   + https://github.com/WebDevSimplified/React-Firebase-Auth
+
+Maksim Ivanov:
+
+  + https://www.youtube.com/watch?v=unr4s3jd9qA
+  + https://github.com/satansdeer/react-firebase-auth
+
+## Firebase
+
   + https://firebase.google.com/docs/web/setup#node.js-apps
   + https://firebase.google.com/docs/auth/web/google-signin

@@ -2,13 +2,12 @@
 
 import React from 'react'
 //import ReactGA from 'react-ga'
-import { BrowserRouter as Router, Switch, Route //, NavLink, Redirect
-} from 'react-router-dom'
-import { Navbar, Nav, Container, //Card Row, Col, Alert, Button
-} from 'react-bootstrap'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Navbar, Nav, Container } from 'react-bootstrap'
 
-//import { AuthProvider } from "../contexts/AuthContext"
-//import ProtectedRoute from "./ProtectedRoute"
+import { AuthProvider } from "../contexts/FirebaseAuth"
+import ProtectedRoute from "./ProtectedRoute"
+
 import Home from "./Home"
 import About from "./About"
 import Login from "./GoogleLogin"
@@ -21,7 +20,7 @@ export default function App() {
     // ReactGA.pageview(window.location.href)
     return (
         <Router>
-            {/* <AuthProvider> */}
+            <AuthProvider>
                 <div className="App">
 
                     <Navbar fixed="top" bg="light" style={{marginBottom:70}}>
@@ -38,14 +37,14 @@ export default function App() {
 
                     <Container fluid style={{marginTop:70}}>
                         <Switch>
-                            <Route exact path="/" component={Home} />
-                            <Route exact path="/about" component={About} />
+                            <ProtectedRoute exact path="/" component={Home} />
+                            <ProtectedRoute exact path="/about" component={About} />
                             <Route exact path="/login" component={Login} />
                         </Switch>
                     </Container>
 
                 </div>
-            {/* </AuthProvider> */}
+            </AuthProvider>
         </Router>
     );
 }
