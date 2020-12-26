@@ -3,11 +3,12 @@
 import React from 'react'
 //import ReactGA from 'react-ga'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { Navbar, Nav, Container } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 
 import { AuthProvider } from "../contexts/FirebaseAuth"
 import ProtectedRoute from "./ProtectedRoute"
 
+import TopNav from "./TopNav"
 import Home from "./Home"
 import About from "./About"
 import Login from "./GoogleLogin"
@@ -23,17 +24,7 @@ export default function App() {
             <AuthProvider>
                 <div className="App">
 
-                    <Navbar fixed="top" bg="light" style={{marginBottom:70}}>
-                        <Navbar.Brand href="/" style={{fontSize:22}}>My Site</Navbar.Brand>
-
-                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                        <Navbar.Collapse id="basic-navbar-nav">
-                            <Nav className="ml-auto">
-                                <Nav.Link href="/about">About</Nav.Link>
-                                <Nav.Link href="/login">Login</Nav.Link>
-                            </Nav>
-                        </Navbar.Collapse>
-                    </Navbar>
+                    <TopNav/>
 
                     <Container fluid style={{marginTop:70}}>
                         <Switch>

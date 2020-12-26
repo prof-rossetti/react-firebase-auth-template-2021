@@ -6,7 +6,6 @@ import { Navbar, Nav, Row, Col, Container, Card, Alert, Button, Form } from 'rea
 import { useAuth } from "../contexts/AuthContext"
 import {Link, useHistory} from 'react-router-dom'
 
-
 export default function Login(props) {
     var error = props.error || ""
 
