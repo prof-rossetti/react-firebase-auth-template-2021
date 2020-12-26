@@ -37,7 +37,7 @@ export default function App() {
 
                     <Container fluid style={{marginTop:70}}>
                         <Switch>
-                            <ProtectedRoute exact path="/" component={Home} />
+                            <Route exact path="/" component={Home} />
                             <ProtectedRoute exact path="/about" component={About} />
                             <Route exact path="/login" component={Login} />
                         </Switch>

@@ -1,16 +1,15 @@
 
 
-import React, { useState } from 'react'
-import { Alert } from 'react-bootstrap'
+import React from 'react'
+//import { Alert } from 'react-bootstrap'
+
+import { useAuth } from "../contexts/FirebaseAuth"
 
 export default function Home() {
-
-    const [currentUser, ] = useState()
-    const [alert, ] = useState()
+    const { currentUser } = useAuth()
 
     return (
         <div>
-            {alert && <Alert variant="danger">{alert}</Alert>}
 
             {currentUser ?
                 <h1>Welcome, {currentUser.displayName}</h1>
