@@ -26,12 +26,11 @@ npm install --save reactfire firebase
 
 REACT_APP_FIREBASE_API_KEY="_______"
 REACT_APP_FIREBASE_AUTH_DOMAIN="_______"
+REACT_APP_FIREBASE_DATABASE_URL="_______" # "https://PROJECT_ID.firebaseio.com",
 REACT_APP_FIREBASE_PROJECT_ID="_______"
 REACT_APP_FIREBASE_STORAGE_BUCKET="_______"
 REACT_APP_FIREBASE_MESSAGING_SENDER_ID="_______"
 REACT_APP_FIREBASE_APP_ID="_______"
-
-REACT_APP_FIREBASE_DATABASE_URL="_______"
 ```
 
 # Usage
@@ -45,3 +44,5 @@ npm start
 # References
 
   + https://github.com/WebDevSimplified/React-Firebase-Auth
+  + https://firebase.google.com/docs/web/setup#node.js-apps
+  + https://firebase.google.com/docs/auth/web/google-signin

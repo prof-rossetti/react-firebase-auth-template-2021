@@ -3,25 +3,27 @@
 
 import React, {useState, useRef} from 'react'
 import { Navbar, Nav, Row, Col, Container, Card, Alert, Button, Form } from 'react-bootstrap'
+import { useAuth } from "../contexts/AuthContext"
 import {Link, useHistory} from 'react-router-dom'
 
 
 export default function Login(props) {
     var error = props.error || ""
 
+    const emailRef = useRef()
+    const passwordRef = useRef()
+    const { login } = useAuth()
     const history = useHistory()
 
-    const emailRef = useRef()
-    //const passwordRef = useRef()
-
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault()
 
         try {
             console.log(emailRef.current.value)
+            await login(emailRef.current.value, passwordRef.current.value)
             history.push("/")
         } catch {
-            console.error("OOPS")
+            console.error("OOPS - Login Error.")
         }
 
         console.log("SUCCESS")
@@ -41,8 +43,12 @@ export default function Login(props) {
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control type="email" ref={emailRef} required />
                             </Form.Group>
+                            <Form.Group id="password">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control type="password" ref={passwordRef} required />
+                            </Form.Group>
                             <Button className="w-100" type="submit">
-                            Log In
+                                Log In
                             </Button>
                         </Form>
 

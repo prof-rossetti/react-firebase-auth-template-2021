@@ -6,10 +6,10 @@ import { BrowserRouter as Router, Switch, Route, NavLink, Redirect} from 'react-
 import { Navbar, Nav, Row, Col, Container, Card, Alert, Button } from 'react-bootstrap'
 
 import { AuthProvider } from "../contexts/AuthContext"
-import ProtectedRoute from "./ProtectedRoute"
+//import ProtectedRoute from "./ProtectedRoute"
 import Home from "./Home"
 import About from "./About"
-import Login from "./Login"
+import Login from "./GoogleLogin"
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -19,7 +19,7 @@ export default function App() {
     // ReactGA.pageview(window.location.href)
     return (
         <Router>
-            <AuthProvider>
+            {/* <AuthProvider> */}
                 <div className="App">
 
                     <Navbar fixed="top" bg="light" style={{marginBottom:70}}>
@@ -36,14 +36,14 @@ export default function App() {
 
                     <Container fluid style={{marginTop:70}}>
                         <Switch>
-                            <ProtectedRoute exact path="/" component={Home} />
-                            <ProtectedRoute exact path="/about" component={About} />
+                            <Route exact path="/" component={Home} />
+                            <Route exact path="/about" component={About} />
                             <Route exact path="/login" component={Login} />
                         </Switch>
                     </Container>
 
                 </div>
-            </AuthProvider>
+            {/* </AuthProvider> */}
         </Router>
     );
 }
