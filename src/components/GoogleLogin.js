@@ -5,9 +5,9 @@
 
 
 
-import React, {useState, useRef} from 'react'
-import { Navbar, Nav, Row, Col, Container, Card, Alert, Button, Form } from 'react-bootstrap'
-import {Link, useHistory} from 'react-router-dom'
+import React, { useState } from 'react'
+import { Container, Card, Button, Form } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
 
 import firebase from "firebase/app"
 //import { useAuth } from "../contexts/AuthContext"
@@ -16,7 +16,10 @@ import { auth } from "../firebase"
 export default function GoogleLogin() {
     const history = useHistory()
 
-    async function handleSubmit(event) {
+    const [, setCurrentUser] = useState()
+    const [, setAlert] = useState()
+
+    async function handleLogin(event) {
         event.preventDefault()
 
         var provider = new firebase.auth.GoogleAuthProvider()
@@ -28,9 +31,8 @@ export default function GoogleLogin() {
         //provider.addScope("openid")
 
         auth.signInWithPopup(provider).then(function(result) {
-            console.log(result)
-
-            console.log(result.operationType)
+            //console.log(result)
+            //console.log(result.operationType)
 
             var token = result.credential.accessToken
             console.log("ACCESS TOKEN", token)
@@ -40,15 +42,17 @@ export default function GoogleLogin() {
             //console.log(user.uid, user.displayName, user.emailuser.emailVerified,
             //    user.phoneNumber, user.photoURL, // user.refreshToken
             //)
+            setCurrentUser(user)
 
             var providerId = result.additionalUserInfo.providerId
-            console.log(providerId)
+            console.log("PROVIDER:", providerId)
 
             var profile = result.additionalUserInfo.profile
-            console.log(profile)
+            console.log("USER PROFILE:", profile)
 
-
-            history.push("/login-success")
+            //history.push("/login-success")
+            setAlert("LOGIN SUCCESS!")
+            history.push("/")
 
         }).catch(function(error) {
             console.error(error)
@@ -56,11 +60,15 @@ export default function GoogleLogin() {
             //var errorMessage = error.message
             //var email = error.email // The email of the user's account used.
             //var credential = error.credential // The firebase.auth.AuthCredential type that was used.
+            setAlert("LOGIN FAILURE. PLEASE TRY AGAIN.")
+            history.push("/")
         })
+    }
 
-        // THIS WILL GET REACHED WHILE THE USER IS PROBABLY STILL SIGNING IN.
-        // IT HAPPENS ASYNC
-        //console.log("LOGIN IN PROGRESS..")
+    async function handleLogout() {
+        await auth.signOut()
+        console.log("LOGOUT SUCCESS")
+        history.push("/logout-success")
     }
 
     return (
@@ -70,9 +78,22 @@ export default function GoogleLogin() {
                     <Card.Body>
                         <h2 className="text-center mb-4">Log In w/ Google</h2>
 
-                        <Form onSubmit={handleSubmit}>
+                        <Form onSubmit={handleLogin}>
                             <Button className="w-100" type="submit">
                                 Log In w/ Google
+                            </Button>
+                        </Form>
+                    </Card.Body>
+                </Card>
+
+
+                <Card>
+                    <Card.Body>
+                        <h2 className="text-center mb-4">Log Out</h2>
+
+                        <Form onSubmit={handleLogout}>
+                            <Button className="w-100" type="submit">
+                                Log Out
                             </Button>
                         </Form>
                     </Card.Body>

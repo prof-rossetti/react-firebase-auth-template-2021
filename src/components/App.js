@@ -2,10 +2,12 @@
 
 import React from 'react'
 //import ReactGA from 'react-ga'
-import { BrowserRouter as Router, Switch, Route, NavLink, Redirect} from 'react-router-dom'
-import { Navbar, Nav, Row, Col, Container, Card, Alert, Button } from 'react-bootstrap'
+import { BrowserRouter as Router, Switch, Route //, NavLink, Redirect
+} from 'react-router-dom'
+import { Navbar, Nav, Container, //Card Row, Col, Alert, Button
+} from 'react-bootstrap'
 
-import { AuthProvider } from "../contexts/AuthContext"
+//import { AuthProvider } from "../contexts/AuthContext"
 //import ProtectedRoute from "./ProtectedRoute"
 import Home from "./Home"
 import About from "./About"
