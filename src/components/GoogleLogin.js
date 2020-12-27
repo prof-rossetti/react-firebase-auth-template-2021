@@ -38,8 +38,8 @@ export default function GoogleLogin() {
             console.log("ACCESS TOKEN", token)
 
             //history.push("/login-success")
-            //setAlert("LOGIN SUCCESS!")
-            history.push("/login-success")
+            //setAlert("LOGIN SUCCESS!", "success")
+            history.push("/profile")
 
             // pretty sure this will trigger the onAuthStateChanged listener
 
@@ -57,7 +57,8 @@ export default function GoogleLogin() {
     async function handleLogout() {
         await app.auth().signOut()
         console.log("LOGOUT SUCCESS")
-        history.push("/logout-success")
+        //setAlert("Logout Success", "success")
+        history.push("/")
     }
 
     return (

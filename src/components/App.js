@@ -22,8 +22,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 export default function App() {
     // ReactGA.pageview(window.location.href)
     return (
-        <Router>
-            <AuthProvider>
+        <AuthProvider>
+            <Router>
                 <div className="App">
 
                     <TopNav/>
@@ -39,7 +39,7 @@ export default function App() {
                     </Container>
 
                 </div>
-            </AuthProvider>
-        </Router>
+            </Router>
+        </AuthProvider>
     );
 }

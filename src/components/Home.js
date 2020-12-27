@@ -1,7 +1,7 @@
 
 
 import React from 'react'
-import { Container, Jumbotron, Card, Button } from 'react-bootstrap'
+import { Container, Jumbotron, Button } from 'react-bootstrap'
 
 //import { useAuth } from "../contexts/FirebaseAuth"
 
