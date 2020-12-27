@@ -23,7 +23,7 @@ export default function GoogleLogin() {
 
             var user = result.user
             console.log("USER:", user)
-            //console.log(user.uid, user.displayName, user.emailuser.emailVerified,
+            //console.log(user.uid, user.displayName, user.email, user.emailVerified,
             //    user.phoneNumber, user.photoURL, // user.refreshToken
             //)
             //setCurrentUser(user)
@@ -70,19 +70,6 @@ export default function GoogleLogin() {
                         <Form onSubmit={handleLogin}>
                             <Button className="w-100" type="submit">
                                 Log In w/ Google
-                            </Button>
-                        </Form>
-                    </Card.Body>
-                </Card>
-
-
-                <Card>
-                    <Card.Body>
-                        <h2 className="text-center mb-4">Log Out</h2>
-
-                        <Form onSubmit={handleLogout}>
-                            <Button className="w-100" type="submit">
-                                Log Out
                             </Button>
                         </Form>
                     </Card.Body>

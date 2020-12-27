@@ -10,13 +10,15 @@ cd react-template-2020
 ```
 
 ```sh
-npm install react-router-bootstrap react-router-dom --save
+npm install react-router-dom --save
+#npm install react-router-bootstrap --save
 npm install react-bootstrap bootstrap --save
 #npm install react-ga --save
 #npm install d3 --save
-# npm install query-string --save
+#npm install query-string --save
 
 npm install --save reactfire firebase
+npm install @primer/octicons-react --save
 ```
 
 # Configure Env

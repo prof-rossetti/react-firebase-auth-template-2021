@@ -12,6 +12,7 @@ import TopNav from "./TopNav"
 import Home from "./Home"
 import About from "./About"
 import Login from "./GoogleLogin"
+import Profile from "./Profile"
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -29,8 +30,9 @@ export default function App() {
                     <Container fluid style={{marginTop:70}}>
                         <Switch>
                             <Route exact path="/" component={Home} />
-                            <ProtectedRoute exact path="/about" component={About} />
+                            <Route exact path="/about" component={About} />
                             <Route exact path="/login" component={Login} />
+                            <ProtectedRoute exact path="/profile" component={Profile} />
                         </Switch>
                     </Container>
 
