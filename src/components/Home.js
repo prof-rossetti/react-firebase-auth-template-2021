@@ -1,7 +1,7 @@
 
 
 import React from 'react'
-import { Container, Card, Button } from 'react-bootstrap'
+import { Container, Jumbotron, Card, Button } from 'react-bootstrap'
 
 //import { useAuth } from "../contexts/FirebaseAuth"
 
@@ -14,17 +14,16 @@ export default function Home() {
 
             <p class="lead">Welcome home...</p>
 
-            <Card style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src="https://picsum.photos/180/100" />
-                    <Card.Body>
-                        <Card.Title>Card Title</Card.Title>
-                        <Card.Text>
-                        Some quick example text to build on the card title and make up the bulk of
-                        the card's content.
-                        </Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
-                    </Card.Body>
-                </Card>
+            <Jumbotron>
+                <h2>Hello, world!</h2>
+                <p>
+                    This is a simple hero unit, a simple jumbotron-style component for calling
+                    extra attention to featured content or information.
+                </p>
+                <p>
+                    <Button variant="primary">Learn more</Button>
+                </p>
+            </Jumbotron>
         </Container>
     )
 }

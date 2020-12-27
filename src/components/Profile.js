@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { Container, Button, Image } from 'react-bootstrap'
+import { Container, Card, Button, Image } from 'react-bootstrap'
 
 import app from "../firebase"
 import { useAuth } from "../contexts/FirebaseAuth"
@@ -21,10 +21,29 @@ export default function Profile() {
         <Container>
             <h1>User Profile</h1>
 
-            <Image roundedCircle src={currentUser.photoURL} alt="user profile"/>
+            <p class="lead">You are logged in as...</p>
 
-            <p>User Id: {currentUser.uid}</p>
-            <p>User Name: {currentUser.displayName}</p>
+            <Card style={{ width: '18rem' }}>
+                <Card.Body>
+
+                    <Image roundedCircle
+                            src={currentUser.photoURL}
+                            alt="user profile"
+                            style={{
+                                marginBottom:15,
+                                display:"block",
+                                marginLeft:"auto",
+                                marginRight:"auto",
+
+                            }}
+                            //height="65px"
+                        />
+
+                    <Card.Text>Name: <pre>{currentUser.displayName}</pre></Card.Text>
+                    <Card.Text>Email: <pre>{currentUser.email}</pre></Card.Text>
+                    <Card.Text>User Id: <pre>{currentUser.uid}</pre></Card.Text>
+                </Card.Body>
+            </Card>
 
             <Button variant="link" onClick={handleLogout}>
                 Log Out

@@ -9,7 +9,7 @@ export default function About() {
         <Container>
             <h1>About</h1>
 
-            <p class="lead">About me...</p>
+            <p class="lead">About the business and the people behind it...</p>
         </Container>
     )
 }

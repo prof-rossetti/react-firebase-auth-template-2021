@@ -10,6 +10,7 @@ import ProtectedRoute from "./ProtectedRoute"
 
 import TopNav from "./TopNav"
 import Home from "./Home"
+import Products from "./Products"
 import About from "./About"
 import Login from "./GoogleLogin"
 import Profile from "./Profile"
@@ -31,6 +32,7 @@ export default function App() {
                         <Switch>
                             <Route exact path="/" component={Home} />
                             <Route exact path="/about" component={About} />
+                            <Route exact path="/products" component={Products} />
                             <Route exact path="/login" component={Login} />
                             <ProtectedRoute exact path="/profile" component={Profile} />
                         </Switch>
