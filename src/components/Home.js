@@ -12,7 +12,7 @@ export default function Home() {
         <Container>
             <h1>Home</h1>
 
-            <p class="lead">Welcome home...</p>
+            <p className="lead">Welcome home...</p>
 
             <Jumbotron>
                 <h2>Hello, world!</h2>

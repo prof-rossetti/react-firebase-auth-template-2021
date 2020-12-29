@@ -30,7 +30,7 @@ export default function Products() {
         <Container>
             <h1>Products</h1>
 
-            <p class="lead">Browse products and services...</p>
+            <p className="lead">Browse products and services...</p>
 
             <Row>
                 <ExampleCard key="row-card-1" title="Product 1"/>

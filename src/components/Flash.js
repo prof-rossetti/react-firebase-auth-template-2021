@@ -1,6 +1,6 @@
 
 import React, {useState} from 'react'
-import {Alert, Container, Button} from 'react-bootstrap'
+import {Alert, Container} from 'react-bootstrap'
 
 function AlertDismissible({message, variant}) {
   console.log(message, variant) // optional heading param

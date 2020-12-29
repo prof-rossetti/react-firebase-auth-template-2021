@@ -21,7 +21,7 @@ export default function Profile() {
         <Container>
             <h1>User Profile</h1>
 
-            <p class="lead">You are logged in as...</p>
+            <p className="lead">You are logged in as...</p>
 
             <Card style={{ width: '18rem' }}>
                 <Card.Body>
