@@ -1,4 +1,7 @@
 
+# Editor
+
+Install VS Code Extension: ES7 React Snippets (`dsznajder`).
 
 # NPM
 

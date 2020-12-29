@@ -15,12 +15,15 @@ import About from "./About"
 import Login from "./GoogleLogin"
 import Profile from "./Profile"
 
+import AlertMe from "./AlertMe"
+
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 //ReactGA.initialize(process.env.REACT_APP_GA_TRACKER_ID, {debug: true})
 
 export default function App() {
     // ReactGA.pageview(window.location.href)
+
     return (
         <AuthProvider>
             <Router>
@@ -35,6 +38,8 @@ export default function App() {
                             <Route exact path="/products" component={Products} />
                             <Route exact path="/login" component={Login} />
                             <ProtectedRoute exact path="/profile" component={Profile} />
+
+                            <Route path="/alerts" component={AlertMe} />
                         </Switch>
                     </Container>
 

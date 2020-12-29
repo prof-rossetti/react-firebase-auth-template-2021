@@ -54,13 +54,6 @@ export default function GoogleLogin() {
         })
     }
 
-    async function handleLogout() {
-        await app.auth().signOut()
-        console.log("LOGOUT SUCCESS")
-        //setAlert("Logout Success", "success")
-        history.push("/")
-    }
-
     return (
         <Container className="d-flex align-items-center justify-content-center">
             <div className="w-100" style={{ maxWidth: "400px", marginTop: "50px"}}>
