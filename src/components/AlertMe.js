@@ -1,21 +1,8 @@
 
-import React, {useState} from 'react'
-import {Alert, Container} from 'react-bootstrap'
+import React from 'react'
+import {Container} from 'react-bootstrap'
 
-function AlertDismissible({message, variant}) {
-  console.log(message, variant) // optional heading param
-
-  const [visible, setVisible] = useState(true)
-
-  if (visible) {
-    return (
-      <Alert dismissible variant={variant} onClose={() => setVisible(false)}>
-        {message}
-      </Alert>
-    )
-  }
-  return null
-}
+import AlertDismissible from './AlertDismissable'
 
 export default function AlertMe() {
   return (

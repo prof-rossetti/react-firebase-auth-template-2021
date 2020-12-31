@@ -6,7 +6,7 @@ import {Button, Card, Form} from 'react-bootstrap'
 
 export default function FlashMe() {
 
-    const [flash, setFlash] = useState("INITIAL FLASH")
+    const [, setFlash] = useState("INITIAL FLASH")
 
     const messageRef = useRef()
     const variantRef = useRef()
@@ -23,7 +23,6 @@ export default function FlashMe() {
 
     return (
         <Card style={{ maxWidth: "400px", marginTop: "50px"}} >
-            <p>FLASH: {flash}</p>
 
             <Card.Body>
                 <h2 className="text-center mb-4">Flash Form</h2>

@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 
 import { AuthProvider } from "../contexts/FirebaseAuth"
-import { FlashProvider } from "../contexts/Flash"
+//import { FlashProvider } from "../contexts/Flash"
 import ProtectedRoute from "./ProtectedRoute"
 
 import TopNav from "./TopNav"
@@ -15,6 +15,7 @@ import Products from "./Products"
 import About from "./About"
 import Login from "./GoogleLogin"
 import Profile from "./Profile"
+import FlashContainer from "./FlashContainer"
 
 import AlertMe from "./AlertMe"
 import FlashMe from "./FlashMe"
@@ -28,13 +29,14 @@ export default function App() {
 
     return (
         <AuthProvider>
-        <FlashProvider>
+            <div className="App">
+                <TopNav/>
 
-            <Router>
-                <div className="App">
-                    <TopNav/>
+                <Container fluid style={{marginTop:70}}>
 
-                    <Container fluid style={{marginTop:70}}>
+                    <FlashContainer/>
+
+                    <Router>
                         <Switch>
                             <Route exact path="/" component={Home} />
                             <Route exact path="/about" component={About} />
@@ -46,11 +48,9 @@ export default function App() {
                             <Route path="/flashes" component={FlashMe} />
 
                         </Switch>
-                    </Container>
-                </div>
-            </Router>
-
-        </FlashProvider>
+                    </Router>
+                </Container>
+            </div>
         </AuthProvider>
     )
 }
