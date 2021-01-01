@@ -1,24 +1,25 @@
 
-import React, {useRef, useState} from 'react'
+import React, {useRef, useContext} from 'react'
 import {Button, Card, Form} from 'react-bootstrap'
 
-//import { useFlash } from "../contexts/Flash"
+import {FlashContext} from "../contexts/FlashContext"
 
 export default function FlashMe() {
-
-    const [, setFlash] = useState("INITIAL FLASH")
+    const [flashes, setFlashes] = useContext(FlashContext)
+    console.log(flashes)
 
     const messageRef = useRef()
     const variantRef = useRef()
 
     function handleSubmit(event){
         event.preventDefault()
+        const message = messageRef.current.value
+        const variant = variantRef.current.value
 
-        console.log("SETTING FLASH...")
-        console.log("MESSAGE:", messageRef.current.value)
-        console.log("VARIANT:", variantRef.current.value)
-
-        setFlash(messageRef.current.value)
+        const newFlash = {message: message, variant: variant}
+        console.log("NEW FLASH:", newFlash)
+        //setFlashes([newFlash])
+        //setFlashes(state => ({ ...state, flashes: [newFlash] }))
     }
 
     return (

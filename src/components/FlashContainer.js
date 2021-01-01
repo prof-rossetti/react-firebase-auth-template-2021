@@ -7,8 +7,6 @@ import AlertDismissable from "./AlertDismissable"
 import {FlashContext} from "../contexts/FlashContext"
 
 export default function FlashContainer() {
-    //const flashes = [{message:"Hello", variant:"info"}, {message:"Goodbye", variant:"dark"}]
-    //const flashes = useContext(FlashContext)
     const [flashes, ] = useContext(FlashContext)
     console.log("PROVIDED FLASHES:", flashes)
 
