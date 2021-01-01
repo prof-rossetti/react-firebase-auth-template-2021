@@ -1,20 +1,22 @@
 
-import React from 'react'
+import React, {useContext} from 'react'
 //import {} from 'react-bootstrap'
-
-//import { useFlash, FlashProvider } from "../contexts/Flash"
 
 import AlertDismissable from "./AlertDismissable"
 
-const flashes = [
-    {message:"Hello", variant:"info"},
-    {message:"Goodbye", variant:"dark"}
-]
+import {FlashContext} from "../contexts/FlashContext"
 
 export default function FlashContainer() {
-    //const { currentFlash } = useFlash()
+    //const flashes = [{message:"Hello", variant:"info"}, {message:"Goodbye", variant:"dark"}]
+    //const flashes = useContext(FlashContext)
+    const [flashes, ] = useContext(FlashContext)
+    console.log("PROVIDED FLASHES:", flashes)
 
-    return flashes.map(function({message, variant}){
-        return <AlertDismissable key={message} message={message} variant={variant} />
-    })
+    if (flashes) {
+        return flashes.map(function({message, variant}){
+            return <AlertDismissable key={message} message={message} variant={variant} />
+        })
+    } else {
+        return <p>No flash</p>
+    }
 }

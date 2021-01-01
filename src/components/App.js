@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 
 import { AuthProvider } from "../contexts/FirebaseAuth"
-//import { FlashProvider } from "../contexts/Flash"
+import { FlashProvider } from "../contexts/FlashContext"
 import ProtectedRoute from "./ProtectedRoute"
 
 import TopNav from "./TopNav"
@@ -34,7 +34,9 @@ export default function App() {
 
                 <Container fluid style={{marginTop:70}}>
 
-                    <FlashContainer/>
+                    <FlashProvider>
+                        <FlashContainer/>
+                    </FlashProvider>
 
                     <Router>
                         <Switch>
