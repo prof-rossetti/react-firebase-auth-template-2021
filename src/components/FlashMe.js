@@ -1,25 +1,26 @@
 
-import React, {useRef, useContext} from 'react'
+import React, {useRef} from 'react'
 import {Button, Card, Form} from 'react-bootstrap'
 
-import {FlashContext} from "../contexts/FlashContext"
+import {useFlashUpdate} from "../contexts/FlashContext"
 
 export default function FlashMe() {
-    const [flashes, setFlashes] = useContext(FlashContext)
-    console.log(flashes)
+    const setDefaultFlashes = useFlashUpdate()
 
     const messageRef = useRef()
     const variantRef = useRef()
 
     function handleSubmit(event){
         event.preventDefault()
+
         const message = messageRef.current.value
         const variant = variantRef.current.value
-
         const newFlash = {message: message, variant: variant}
         console.log("NEW FLASH:", newFlash)
-        //setFlashes([newFlash])
-        //setFlashes(state => ({ ...state, flashes: [newFlash] }))
+
+        setDefaultFlashes()
+        //setFlashes()
+        //history.push("/")
     }
 
     return (
@@ -36,8 +37,23 @@ export default function FlashMe() {
 
                     <Form.Group id="variant">
                         <Form.Label>Variant</Form.Label>
-                        <Form.Control type="text" ref={variantRef} required />
+                        {/* <Form.Control type="text" ref={variantRef} required /> */}
+                        <Form.Control as="select" ref={variantRef}>
+                            <option value="dark">dark</option>
+                            <option value="light">light</option>
+                            <option value="danger">danger</option>
+                            <option value="warning">warning</option>
+                            <option value="success">success</option>
+                            <option value="primary">primary</option>
+                            <option value="info">info</option>
+                        </Form.Control>
                     </Form.Group>
+
+
+
+
+
+
 
                     <Button className="w-100" type="submit" onClick={handleSubmit}>
                         Set Flash

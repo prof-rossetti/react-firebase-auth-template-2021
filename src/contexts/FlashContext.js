@@ -1,18 +1,35 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 
-const FlashContext = React.createContext([{}, () => {}]) // pass empty object and function, for the results of the useState hook
+export const FlashContext = React.createContext()
+export const FlashUpdateContext = React.createContext(() => {}) // this is a function
 
-function FlashProvider({ children }) {
+export function useFlash() {
+    return useContext(FlashContext)
+}
+
+export function useFlashUpdate() {
+    return useContext(FlashUpdateContext)
+}
+
+export function FlashProvider({ children }) {
     const [flashes, setFlashes] = useState([
-        {message:"Hello", variant:"info"},
-        {message:"Goodbye", variant:"dark"}
-    ])
+            {message:"Hello", variant:"info"},
+            {message:"Goodbye", variant:"dark"}
+        ])
+
+    function setDefaultFlashes(){
+        console.log("SETTING DEFAULT FLASHES...")
+        setFlashes(prevFlashes => [
+            {message:"Default 1", variant:"primary"},
+            {message:"Default 2", variant:"success"}
+        ])
+    }
 
     return (
-        <FlashContext.Provider value={[flashes, setFlashes]}>
-            {children}
+        <FlashContext.Provider value={flashes}>
+            <FlashUpdateContext.Provider value={setDefaultFlashes}>
+                {children}
+            </FlashUpdateContext.Provider>
         </FlashContext.Provider>
     )
 }
-
-export { FlashContext, FlashProvider }

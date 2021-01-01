@@ -29,14 +29,12 @@ export default function App() {
 
     return (
         <AuthProvider>
+        <FlashProvider>
             <div className="App">
                 <TopNav/>
 
                 <Container fluid style={{marginTop:70}}>
-
-                    <FlashProvider>
-                        <FlashContainer/>
-                    </FlashProvider>
+                    <FlashContainer/>
 
                     <Router>
                         <Switch>
@@ -53,6 +51,7 @@ export default function App() {
                     </Router>
                 </Container>
             </div>
+        </FlashProvider>
         </AuthProvider>
     )
 }
