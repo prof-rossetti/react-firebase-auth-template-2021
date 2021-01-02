@@ -48,6 +48,11 @@ npm start
 
 # References
 
+## React
+
+  + https://reactjs.org/docs/context.html#updating-context-from-a-nested-component
+
+
 ## Examples
 
 Web Dev Simplified:

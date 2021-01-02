@@ -5,7 +5,7 @@ import {Button, Card, Form} from 'react-bootstrap'
 import {useFlashUpdate} from "../contexts/FlashContext"
 
 export default function FlashMe() {
-    const setDefaultFlashes = useFlashUpdate()
+    const flash = useFlashUpdate()
 
     const messageRef = useRef()
     const variantRef = useRef()
@@ -16,10 +16,8 @@ export default function FlashMe() {
         const message = messageRef.current.value
         const variant = variantRef.current.value
         const newFlash = {message: message, variant: variant}
-        console.log("NEW FLASH:", newFlash)
 
-        setDefaultFlashes()
-        //setFlashes()
+        flash(newFlash)
         //history.push("/")
     }
 

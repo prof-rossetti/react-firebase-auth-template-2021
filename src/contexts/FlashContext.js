@@ -13,9 +13,9 @@ export function useFlashUpdate() {
 
 export function FlashProvider({ children }) {
     const [flashes, setFlashes] = useState([
-            {message:"Hello", variant:"info"},
-            {message:"Goodbye", variant:"dark"}
-        ])
+        //{message:"Hello", variant:"info"},
+        //{message:"Goodbye", variant:"dark"}
+    ])
 
     function setDefaultFlashes(){
         console.log("SETTING DEFAULT FLASHES...")
@@ -25,9 +25,17 @@ export function FlashProvider({ children }) {
         ])
     }
 
+    function flash(newFlash){
+        console.log("NEW FLASH:", newFlash)
+        setFlashes(function(prevFlashes){
+            const newFlashes = prevFlashes.concat(newFlash)
+            return newFlashes
+        })
+    }
+
     return (
         <FlashContext.Provider value={flashes}>
-            <FlashUpdateContext.Provider value={setDefaultFlashes}>
+            <FlashUpdateContext.Provider value={flash}>
                 {children}
             </FlashUpdateContext.Provider>
         </FlashContext.Provider>

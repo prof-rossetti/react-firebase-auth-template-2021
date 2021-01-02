@@ -10,8 +10,8 @@ export default function FlashContainer() {
     console.log("PROVIDED FLASHES:", flashes)
 
     if (flashes && flashes.length > 0) {
-        return flashes.map(function({message, variant}){
-            return <AlertDismissable key={message} message={message} variant={variant} />
+        return flashes.map(function({message, variant}, index){
+            return <AlertDismissable key={index} message={message} variant={variant} />
         })
     } else {
         return <p>No flash</p>
