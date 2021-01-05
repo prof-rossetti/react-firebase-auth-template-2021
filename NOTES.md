@@ -68,3 +68,7 @@ Maksim Ivanov:
 
   + https://firebase.google.com/docs/web/setup#node.js-apps
   + https://firebase.google.com/docs/auth/web/google-signin
+
+## Logos
+
+  + https://about.google/brand-resource-center/logos-list/
