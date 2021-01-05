@@ -10,6 +10,7 @@ import { FlashProvider } from "../contexts/FlashContext"
 import ProtectedRoute from "./ProtectedRoute"
 
 import TopNav from "./TopNav"
+//import Footer from "./Footer"
 import Home from "./Home"
 import Products from "./Products"
 import About from "./About"
@@ -18,7 +19,7 @@ import Profile from "./Profile"
 import FlashContainer from "./FlashContainer"
 
 import AlertMe from "./AlertMe"
-import FlashMe from "./FlashMe"
+import FlashForm from "./FlashForm"
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -45,11 +46,12 @@ export default function App() {
                             <ProtectedRoute exact path="/profile" component={Profile} />
 
                             <Route path="/alerts" component={AlertMe} />
-                            <Route path="/flashes" component={FlashMe} />
-
+                            <Route path="/flashes" component={FlashForm} />
                         </Switch>
                     </Router>
                 </Container>
+
+                {/* <Footer/> */}
             </div>
         </FlashProvider>
         </AuthProvider>

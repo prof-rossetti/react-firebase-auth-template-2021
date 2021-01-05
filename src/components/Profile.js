@@ -6,15 +6,18 @@ import { Container, Card, Button, Image } from 'react-bootstrap'
 
 import app from "../firebase"
 import { useAuth } from "../contexts/FirebaseAuth"
+import { useFlashUpdate } from "../contexts/FlashContext"
 
 export default function Profile() {
     const { currentUser } = useAuth()
+    const flash = useFlashUpdate()
     const history = useHistory()
 
     async function handleLogout() {
         await app.auth().signOut()
         console.log("LOGOUT SUCCESS")
-        history.push("/logout-success")
+        flash({message:"Logout Success", variant: "success"})
+        history.push("/login")
     }
 
     return (

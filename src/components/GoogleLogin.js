@@ -6,8 +6,10 @@ import { useHistory } from 'react-router-dom'
 import firebase from "firebase/app"
 
 import app from "../firebase"
+import { useFlashUpdate } from "../contexts/FlashContext"
 
 export default function GoogleLogin() {
+    const flash = useFlashUpdate()
     const history = useHistory()
 
     async function handleLogin(event) {
@@ -37,9 +39,8 @@ export default function GoogleLogin() {
             var token = result.credential.accessToken
             console.log("ACCESS TOKEN", token)
 
-            //history.push("/login-success")
-            //setAlert("LOGIN SUCCESS!", "success")
-            history.push("/profile")
+            //flash({message:"Login Success", variant: "success"})
+            //history.push("/profile")
 
             // pretty sure this will trigger the onAuthStateChanged listener
 
@@ -49,10 +50,16 @@ export default function GoogleLogin() {
             //var errorMessage = error.message
             //var email = error.email // The email of the user's account used.
             //var credential = error.credential // The firebase.auth.AuthCredential type that was used.
-            //setAlert("LOGIN FAILURE. PLEASE TRY AGAIN.")
-            history.push("/login-failure")
+
+            //history.push("/login-failure")
         })
+
+        //console.log("BOTTOM OF GOOGLE LOGIN")
+        //history.push("/profile")
     }
+
+
+
 
     return (
         <Container className="d-flex align-items-center justify-content-center">

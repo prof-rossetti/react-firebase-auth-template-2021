@@ -14,6 +14,7 @@ export default function FlashContainer() {
             return <AlertDismissable key={index} message={message} variant={variant} />
         })
     } else {
-        return <p>No flash</p>
+        //return <p>No flash</p>
+        return null
     }
 }

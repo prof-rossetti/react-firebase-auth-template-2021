@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react"
 
 export const FlashContext = React.createContext()
-export const FlashUpdateContext = React.createContext(() => {}) // this is a function
+export const FlashUpdateContext = React.createContext(() => {}) // blank function as initial placeholder for the flash-setting function
 
 export function useFlash() {
     return useContext(FlashContext)
@@ -17,13 +17,13 @@ export function FlashProvider({ children }) {
         //{message:"Goodbye", variant:"dark"}
     ])
 
-    function setDefaultFlashes(){
-        console.log("SETTING DEFAULT FLASHES...")
-        setFlashes(prevFlashes => [
-            {message:"Default 1", variant:"primary"},
-            {message:"Default 2", variant:"success"}
-        ])
-    }
+    //function setDefaultFlashes(){
+    //    console.log("SETTING DEFAULT FLASHES...")
+    //    setFlashes(prevFlashes => [
+    //        {message:"Default 1", variant:"primary"},
+    //        {message:"Default 2", variant:"success"}
+    //    ])
+    //}
 
     function flash(newFlash){
         console.log("NEW FLASH:", newFlash)
