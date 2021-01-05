@@ -33,7 +33,7 @@ export default function GoogleLogin() {
         // TODO: store this user info in the database, perhaps firestore
 
         console.log("LOGIN SUCCESS")
-        flash({message:"Login Success", variant: "success"})
+        flash({message:"Login success. Welcome back!", variant: "success"})
         history.push("/profile")
     }
 

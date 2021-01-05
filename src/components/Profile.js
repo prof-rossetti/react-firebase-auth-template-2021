@@ -16,7 +16,7 @@ export default function Profile() {
     async function handleLogout() {
         await app.auth().signOut()
         console.log("LOGOUT SUCCESS")
-        flash({message:"Logout Success", variant: "success"})
+        flash({message:"Logout success. Have a nice day!", variant: "success"})
         history.push("/login")
     }
 
