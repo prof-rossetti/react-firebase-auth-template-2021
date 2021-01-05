@@ -1,7 +1,7 @@
 
 
 import React from 'react'
-import { Container, Card, Button, Form, Image } from 'react-bootstrap'
+import { Container, Card, Button, Form } from 'react-bootstrap'
 //import GoogleButton from 'react-google-button'
 import { useHistory } from 'react-router-dom'
 import firebase from "firebase/app"
