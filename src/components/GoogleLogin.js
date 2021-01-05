@@ -16,50 +16,33 @@ export default function GoogleLogin() {
         event.preventDefault()
 
         var provider = new firebase.auth.GoogleAuthProvider()
-        // see: https://developers.google.com/identity/protocols/oauth2/scopes
-        provider.addScope("https://www.googleapis.com/auth/userinfo.email")
+        provider.addScope("https://www.googleapis.com/auth/userinfo.email")         // see: https://developers.google.com/identity/protocols/oauth2/scopes
 
-        app.auth().signInWithPopup(provider).then(function(result) {
-            //console.log(result)
-            console.log(result.operationType)
+        await app.auth().signInWithPopup(provider)
+        //await app.auth().signInWithRedirect(provider)
 
-            var user = result.user
-            console.log("USER:", user)
-            //console.log(user.uid, user.displayName, user.email, user.emailVerified,
-            //    user.phoneNumber, user.photoURL, // user.refreshToken
-            //)
-            //setCurrentUser(user)
+        //console.log(result.operationType)
+        //
+        //var user = result.user
+        //console.log("USER:", user)
+        ////console.log(user.uid, user.displayName, user.email, user.emailVerified,
+        ////    user.phoneNumber, user.photoURL, // user.refreshToken
+        ////)
+        ////setCurrentUser(user)
+        //
+        ////var providerId = result.additionalUserInfo.providerId
+        ////console.log("PROVIDER:", providerId)
+        //var profile = result.additionalUserInfo.profile
+        //console.log("USER PROFILE:", profile)
+        ////setUserProfile(profile)
+        //
+        //var token = result.credential.accessToken
+        //console.log("ACCESS TOKEN", token)
 
-            //var providerId = result.additionalUserInfo.providerId
-            //console.log("PROVIDER:", providerId)
-            var profile = result.additionalUserInfo.profile
-            console.log("USER PROFILE:", profile)
-            //setUserProfile(profile)
-
-            var token = result.credential.accessToken
-            console.log("ACCESS TOKEN", token)
-
-            //flash({message:"Login Success", variant: "success"})
-            //history.push("/profile")
-
-            // pretty sure this will trigger the onAuthStateChanged listener
-
-        }).catch(function(error) {
-            console.error(error)
-            //var errorCode = error.code
-            //var errorMessage = error.message
-            //var email = error.email // The email of the user's account used.
-            //var credential = error.credential // The firebase.auth.AuthCredential type that was used.
-
-            //history.push("/login-failure")
-        })
-
-        //console.log("BOTTOM OF GOOGLE LOGIN")
-        //history.push("/profile")
+        console.log("LOGIN SUCCESS")
+        flash({message:"Login Success", variant: "success"})
+        history.push("/profile")
     }
-
-
-
 
     return (
         <Container className="d-flex align-items-center justify-content-center">

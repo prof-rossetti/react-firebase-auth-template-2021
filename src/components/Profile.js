@@ -42,9 +42,9 @@ export default function Profile() {
                             //height="65px"
                         />
 
-                    <Card.Text>Name: <pre>{currentUser.displayName}</pre></Card.Text>
-                    <Card.Text>Email: <pre>{currentUser.email}</pre></Card.Text>
-                    <Card.Text>User Id: <pre>{currentUser.uid}</pre></Card.Text>
+                    <div>Name: <pre>{currentUser.displayName}</pre></div>
+                    <div>Email: <pre>{currentUser.email}</pre></div>
+                    <div>User Id: <pre>{currentUser.uid}</pre></div>
                 </Card.Body>
             </Card>
 
