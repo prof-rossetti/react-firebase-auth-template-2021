@@ -24,7 +24,13 @@ npm install --save reactfire firebase
 npm install @primer/octicons-react --save
 ```
 
+# Configure Firebase
+
+Go to https://console.firebase.google.com/ to add a new project. Visit "Authentication"  tab and enable the "Google" sign-in option. Visit the project settings to obtain the firebase configuration credentials.
+
 # Configure Env
+
+Add your firebase creds to the ".env" file:
 
 ```sh
 # .env file
