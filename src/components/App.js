@@ -34,7 +34,7 @@ export default function App() {
             <div className="App">
                 <TopNav/>
 
-                <Container style={{marginTop:70}}>
+                <Container>
                     <FlashContainer/>
 
                     <Router>

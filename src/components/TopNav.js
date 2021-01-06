@@ -9,9 +9,12 @@ export default function TopNav() {
     const { currentUser } = useAuth()
 
     return (
-        <Navbar fixed="top" bg="light" style={{marginBottom:70}}
-            collapseOnSelect expand="sm"
+        <Navbar bg="light" // controls nav background color
+            fixed="top" // keeps nav at top (not necessary when sticky top is set)
             sticky="top" // pushes page below, prevents overlap when expanded
+            expand="sm" // collapse when less wide than this breakpoint
+            collapseOnSelect // collapse after a nav link has been clicked
+            style={{marginBottom:"15px"}}
         >
             <Navbar.Brand href="/" style={{fontSize:22}}>My Site</Navbar.Brand>
 
@@ -20,12 +23,10 @@ export default function TopNav() {
                 <Nav className="ml-auto">
                     <Nav.Link href="/products">Products</Nav.Link>
                     <Nav.Link href="/about">About</Nav.Link>
-
-                    {/* <GearIcon size="medium"/> */}
-
                     {!currentUser &&
                         <Nav.Link href="/login">Login</Nav.Link>
                     }
+
 
                 </Nav>
 
