@@ -11,6 +11,7 @@ export default function TopNav() {
     return (
         <Navbar fixed="top" bg="light" style={{marginBottom:70}}
             collapseOnSelect expand="sm"
+            sticky="top" // pushes page below, prevents overlap when expanded
         >
             <Navbar.Brand href="/" style={{fontSize:22}}>My Site</Navbar.Brand>
 
