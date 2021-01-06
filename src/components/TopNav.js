@@ -9,7 +9,9 @@ export default function TopNav() {
     const { currentUser } = useAuth()
 
     return (
-        <Navbar fixed="top" bg="light" style={{marginBottom:70}}>
+        <Navbar fixed="top" bg="light" style={{marginBottom:70}}
+            collapseOnSelect expand="sm"
+        >
             <Navbar.Brand href="/" style={{fontSize:22}}>My Site</Navbar.Brand>
 
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
