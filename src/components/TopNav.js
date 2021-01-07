@@ -4,16 +4,14 @@ import {Navbar, Nav, Image} from 'react-bootstrap'
 
 import { useAuth } from "../contexts/FirebaseAuth"
 
-// https://github.com/react-bootstrap/react-bootstrap/issues/5597
-
 export default function TopNav() {
     const { currentUser } = useAuth()
-    const [expanded, setExpanded] = useState(false)
+    //const [expanded, setExpanded] = useState(false)
 
-    function overrideToggle() {
-        console.log("TOGGLE TRIGGERED...")
-        setExpanded(prevExpanded => !prevExpanded)
-    }
+    //function overrideToggle() {
+    //    console.log("TOGGLE TRIGGERED...")
+    //    setExpanded(prevExpanded => !prevExpanded)
+    //}
 
     return (
         <Navbar bg="light" // controls nav background color
@@ -24,8 +22,10 @@ export default function TopNav() {
             style={{marginBottom:"15px"}}
 
             // OVERRIDING DEFAULT BEHAVIOR SO WE CAN DETECT CURRENT TOGGLED STATE
-            expanded={expanded} // only need to add this when configuring the nav to detect its expanded state
-            onToggle={overrideToggle}
+            // ... https://github.com/react-bootstrap/react-bootstrap/issues/5597
+            //expanded={expanded}
+            //onToggle={overrideToggle}
+            //onToggle={next => setExpanded(next)}
 
         >
             <Navbar.Brand href="/" style={{fontSize:22}}>My Site</Navbar.Brand>
@@ -33,14 +33,21 @@ export default function TopNav() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
-                    <Nav.Link href="/products">Products</Nav.Link>
-                    <Nav.Link href="/about">About</Nav.Link>
+                    <Nav.Link href="/products" style={{marginTop:"5px"}}>Products</Nav.Link>
+                    <Nav.Link href="/about" style={{marginTop:"5px"}}>About</Nav.Link>
                     {!currentUser &&
-                        <Nav.Link href="/login">Login</Nav.Link>
+                        <Nav.Link href="/login" style={{marginTop:"5px"}}>Login</Nav.Link>
                     }
+
+                    { currentUser &&
+                        <Nav.Link href="/profile">
+                            <Image roundedCircle src={currentUser.photoURL} alt="user profile" height="35px"/>
+                        </Nav.Link>
+                    }
+
                 </Nav>
 
-                { currentUser &&
+                {/* currentUser &&
                     <Nav.Link href="/profile" style={ expanded ? {paddingLeft:"0px"} : {paddingLeft: "1rem"}}>
                         <Image roundedCircle
                             src={currentUser.photoURL}
@@ -48,7 +55,13 @@ export default function TopNav() {
                             height="35px"
                         />
                     </Nav.Link>
-                }
+                */}
+
+                {/* currentUser && (expanded ?
+                        <p>Expanded</p> : <p>Not expanded (Visible)</p>
+                    )
+                */}
+
             </Navbar.Collapse>
         </Navbar>
     )
