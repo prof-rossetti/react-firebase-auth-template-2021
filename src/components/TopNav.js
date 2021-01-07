@@ -4,19 +4,11 @@ import {Navbar, Nav, Image} from 'react-bootstrap'
 
 import { useAuth } from "../contexts/FirebaseAuth"
 
+import "./TopNav.css"
+
 export default function TopNav() {
     const { currentUser } = useAuth()
     //const [expanded, setExpanded] = useState(false)
-
-    //function overrideToggle() {
-    //    console.log("TOGGLE TRIGGERED...")
-    //    setExpanded(prevExpanded => !prevExpanded)
-    //}
-
-    // re-center nav links vertically
-    // b/c image makes nav taller than normal
-    // https://stackoverflow.com/a/35434588/670433
-    const linkStyle = {height:"35px", lineHeight:"35px"}
 
     return (
         <Navbar bg="light" // controls nav background color
@@ -28,7 +20,6 @@ export default function TopNav() {
 
             // OVERRIDING DEFAULT BEHAVIOR SO WE CAN DETECT CURRENT TOGGLED STATE
             //expanded={expanded}
-            //onToggle={overrideToggle}
             //onToggle={next => setExpanded(next)}
 
         >
@@ -37,33 +28,18 @@ export default function TopNav() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
-                    <Nav.Link style={linkStyle} href="/products">Products</Nav.Link>
-                    <Nav.Link style={linkStyle} href="/about">About</Nav.Link>
+                    <Nav.Link href="/products">Products</Nav.Link>
+                    <Nav.Link href="/about">About</Nav.Link>
                     {!currentUser &&
-                        <Nav.Link style={linkStyle} href="/login">Login</Nav.Link>
-                    }
-
-                    { currentUser &&
-                        <Nav.Link href="/profile">
-                            <Image roundedCircle src={currentUser.photoURL} alt="user profile" height="35px"/>
-                        </Nav.Link>
+                        <Nav.Link href="/login">Login</Nav.Link>
                     }
                 </Nav>
 
-                {/* currentUser &&
-                    <Nav.Link href="/profile" style={ expanded ? {paddingLeft:"0px"} : {paddingLeft: "1rem"}}>
-                        <Image roundedCircle
-                            src={currentUser.photoURL}
-                            alt="user profile"
-                            height="35px"
-                        />
+               { currentUser &&
+                    <Nav.Link href="/profile" className="profile-link">
+                        <Image roundedCircle src={currentUser.photoURL} alt="user profile" height="35px"/>
                     </Nav.Link>
-                */}
-
-                {/* currentUser && (expanded ?
-                        <p>Expanded</p> : <p>Not expanded (Visible)</p>
-                    )
-                */}
+                }
 
             </Navbar.Collapse>
         </Navbar>
