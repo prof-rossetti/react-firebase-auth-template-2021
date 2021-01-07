@@ -13,6 +13,11 @@ export default function TopNav() {
     //    setExpanded(prevExpanded => !prevExpanded)
     //}
 
+    // re-center nav links vertically
+    // b/c image makes nav taller than normal
+    // https://stackoverflow.com/a/35434588/670433
+    const linkStyle = {height:"35px", lineHeight:"35px"}
+
     return (
         <Navbar bg="light" // controls nav background color
             fixed="top" // keeps nav at top (not necessary when sticky top is set)
@@ -22,7 +27,6 @@ export default function TopNav() {
             style={{marginBottom:"15px"}}
 
             // OVERRIDING DEFAULT BEHAVIOR SO WE CAN DETECT CURRENT TOGGLED STATE
-            // ... https://github.com/react-bootstrap/react-bootstrap/issues/5597
             //expanded={expanded}
             //onToggle={overrideToggle}
             //onToggle={next => setExpanded(next)}
@@ -33,10 +37,10 @@ export default function TopNav() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
-                    <Nav.Link href="/products" style={{marginTop:"5px"}}>Products</Nav.Link>
-                    <Nav.Link href="/about" style={{marginTop:"5px"}}>About</Nav.Link>
+                    <Nav.Link style={linkStyle} href="/products">Products</Nav.Link>
+                    <Nav.Link style={linkStyle} href="/about">About</Nav.Link>
                     {!currentUser &&
-                        <Nav.Link href="/login" style={{marginTop:"5px"}}>Login</Nav.Link>
+                        <Nav.Link style={linkStyle} href="/login">Login</Nav.Link>
                     }
 
                     { currentUser &&
@@ -44,7 +48,6 @@ export default function TopNav() {
                             <Image roundedCircle src={currentUser.photoURL} alt="user profile" height="35px"/>
                         </Nav.Link>
                     }
-
                 </Nav>
 
                 {/* currentUser &&
