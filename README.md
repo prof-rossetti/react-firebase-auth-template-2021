@@ -2,7 +2,7 @@
 
 This is a starter / template repository for creating new react apps with mobile responsive nav and firebase authentication.
 
-<img src="https://github.com/s2t2/react-firebase-auth-template-2021/raw/master/demo.gif" alt="a demonstration of app functionality" height="400" />
+<img src="https://github.com/s2t2/react-firebase-auth-template-2021/raw/demo/demo.gif" alt="a demonstration of app functionality" height="400" />
 
 
 ## Prerequisites
