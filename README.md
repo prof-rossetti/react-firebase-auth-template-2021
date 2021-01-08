@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# React App with Firebase Auth (2020)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a starter / template repository for creating new react apps with mobile responsive nav and firebase authentication.
 
-## Available Scripts
+## Prerequisites
 
-In the project directory, you can run:
+[Install NVM](https://github.com/nvm-sh/nvm#install--update-script) and
+use it to install the latest stable version of [NPM](https://nodejs.org/en/).
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Install package dependencies:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```sh
+npm install
+```
 
-### `npm test`
+## Configuration
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Firebase Credentials
 
-### `npm run build`
+Visit https://console.firebase.google.com/ to add a new project. Visit "Authentication"  tab and enable the "Google" sign-in option. Visit the project settings to obtain the firebase configuration credentials.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Environment Variables
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Create a new file called ".env" in the root directory, and place inside the following contents, using your own respective firebase credentials:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```sh
+# .env file
 
-### `npm run eject`
+REACT_APP_FIREBASE_API_KEY="_______"
+REACT_APP_FIREBASE_AUTH_DOMAIN="_______"
+REACT_APP_FIREBASE_DATABASE_URL="_______" # like "https://PROJECT_ID.firebaseio.com",
+REACT_APP_FIREBASE_PROJECT_ID="_______"
+REACT_APP_FIREBASE_STORAGE_BUCKET="_______"
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID="_______"
+REACT_APP_FIREBASE_APP_ID="_______"
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#REACT_APP_GA_TRACKER_ID="UA-XXXXXX-1"
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+> FYI: [Environment Variable Security in React Apps](https://create-react-app.dev/docs/adding-custom-environment-variables/)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Usage
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Run the app locally:
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```sh
+npm start
+```
