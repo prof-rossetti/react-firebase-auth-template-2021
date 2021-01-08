@@ -78,3 +78,15 @@ Maksim Ivanov:
 ## Logos
 
   + https://about.google/brand-resource-center/logos-list/
+
+## GIF Generation
+
+```sh
+brew install ffmpeg gifsicle
+```
+
+Make a recording with quicktime, then convert it to GIF:
+
+```sh
+ffmpeg -i ~/path/to/my-recording.mov -pix_fmt rgb24 -r 10 -f gif - | gifsicle --optimize=3 --delay=3 > demo.gif
+```

@@ -1,13 +1,18 @@
-# React App with Firebase Auth (2020)
+# React App with Firebase Auth (2021)
 
 This is a starter / template repository for creating new react apps with mobile responsive nav and firebase authentication.
+
+<img src="/demo.gif" alt="a demonstration of app functionality" height="400" />
+
 
 ## Prerequisites
 
 [Install NVM](https://github.com/nvm-sh/nvm#install--update-script) and
-use it to install the latest stable version of [NPM](https://nodejs.org/en/).
+use it to install the latest stable version of [Node.js / NPM](https://nodejs.org/en/).
 
 ## Installation
+
+Clone this repo and navigate to the root directory.
 
 Install package dependencies:
 
