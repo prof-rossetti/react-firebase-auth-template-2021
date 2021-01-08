@@ -26,31 +26,36 @@ export default function Profile() {
 
             <p className="lead">You are logged in as...</p>
 
-            <Card style={{ width: '18rem' }}>
-                <Card.Body>
+            <Container className="d-flex align-items-center justify-content-center">
+            <div className="w-100" style={{ maxWidth: "400px"}}>
 
-                    <Image roundedCircle
-                            src={currentUser.photoURL}
-                            alt="user profile"
-                            style={{
-                                marginBottom:15,
-                                display:"block",
-                                marginLeft:"auto",
-                                marginRight:"auto",
+                <Card >
+                    <Card.Body>
 
-                            }}
-                            //height="65px"
-                        />
+                        <Image roundedCircle
+                                src={currentUser.photoURL}
+                                alt="user profile"
+                                style={{
+                                    marginBottom:15,
+                                    display:"block",
+                                    marginLeft:"auto",
+                                    marginRight:"auto",
 
-                    <div>Name: <pre>{currentUser.displayName}</pre></div>
-                    <div>Email: <pre>{currentUser.email}</pre></div>
-                    <div>User Id: <pre>{currentUser.uid}</pre></div>
-                </Card.Body>
-            </Card>
+                                }}
+                                //height="65px"
+                            />
 
-            <Button variant="link" onClick={handleLogout}>
-                Log Out
-            </Button>
+                        <div>Name: <pre>{currentUser.displayName}</pre></div>
+                        <div>Email: <pre>{currentUser.email}</pre></div>
+                        <div>User Id: <pre>{currentUser.uid}</pre></div>
+                    </Card.Body>
+                </Card>
+
+                <Button variant="link" onClick={handleLogout}>
+                    Log Out
+                </Button>
+            </div>
+            </Container>
         </Container>
     )
 }
