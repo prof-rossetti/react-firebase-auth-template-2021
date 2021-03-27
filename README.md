@@ -22,7 +22,7 @@ npm install
 
 ## Configuration
 
-### Firebase Credentials
+### Firebase Setup
 
 Visit https://console.firebase.google.com/ to **create a new Firebase project**. When you create the project:
 
@@ -33,9 +33,22 @@ After creating the Firebase project, visit it's "Authentication" settings, and "
 
 Click the gear icon to visit the "Project Settings" page, locate the "Your Apps" section, and **create a Web App**, or use an existing one. When you create the app (or in the future by visiting its settings page, finding the "Firebase SDK snippet", and clicking "Config"), you'll see the **Firebase SDK credentials**. Use these values for the `FIREBASE_` environment variables (see "Environment Variables" section below).
 
-### Google Analytics Credentials
+### Firestore Database Setup
 
-Visit https://analytics.google.com/ and navigate to the web property you just created. Visit the web property's admin settings, specifically the "Property Settings", and find the numeric **Property Id** (e.g. "XXXXXXXXXX"). Use this value for the `GA_TRACKER_ID` environment variable, in this format: `"UA-XXXXXXXXXX-1"` (see "Environment Variables" section below).
+Follow [this guide](https://firebase.google.com/docs/firestore/quickstart) to create a Firestore database for the Firebase project you just created. When you create the database, "start in test mode".
+
+After the database has been created, create a new collection called "products" with a number of documents inside. Create each document using an auto-generated "id" attribute, as well as the attributes "name" (string), "description" (string), "price" (number) and "url" (string). Populate the documents based on the following examples:
+
+name | description | price | url
+--- | --- | --- | ---
+Strawberries | Juicy organic strawberries. | 4.99 | https://picsum.photos/id/1080/360/200
+Cup of Tea | An individually-prepared tea or coffee of choice. | 3.49 | https://picsum.photos/id/225/360/200
+Textbook | It has all the answers. | 129.99 | https://picsum.photos/id/24/360/200
+
+
+### Google Analytics Setup
+
+Visit https://analytics.google.com/ and navigate to the web property you created via the Firebase project creation process. Visit the web property's admin settings, specifically the "Property Settings", and find the numeric **Property Id** (e.g. "XXXXXXXXXX"). Use this value for the `GA_TRACKER_ID` environment variable, in this format: `"UA-XXXXXXXXXX-1"` (see "Environment Variables" section below).
 
 
 ### Environment Variables
