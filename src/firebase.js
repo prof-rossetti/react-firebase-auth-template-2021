@@ -35,13 +35,20 @@ export default app
 const db = firebase.firestore(app)
 
 export async function fetchProducts() {
-    console.log("FETCHING PRODUCTS...")
     // https://googleapis.dev/nodejs/firestore/latest/CollectionReference.html#get
     // https://googleapis.dev/nodejs/firestore/latest/QuerySnapshot.html
+    console.log("FETCHING PRODUCTS...")
+
     const docs = await db.collection("products").get()
+    console.log("DOCS:", docs.size)
+
+    var products = [] // Array.from(docs)
     docs.forEach((doc) => {
         console.log("DOC ID:", doc.id, "DATA", doc.data())
+        var product = doc.data()
+        product["id"] = doc.id
+        products.push(product)
     })
-    console.log("PRODUCTS:", docs.size)
-    return docs
+    console.log("PRODUCTS:", products.length)
+    return products
 }
