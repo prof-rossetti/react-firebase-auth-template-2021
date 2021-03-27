@@ -24,7 +24,7 @@ npm install
 
 ### Firebase Credentials
 
-Visit https://console.firebase.google.com/ to **create a new project**. When you create the project:
+Visit https://console.firebase.google.com/ to **create a new Firebase project**. When you create the project:
 
   1. Choose an existing Google Analytics account or create a new one.
   2. Enable the setting to automatically create a new property in this account.
@@ -35,7 +35,7 @@ Click the gear icon to visit the "Project Settings" page, locate the "Your Apps"
 
 ### Google Analytics Credentials
 
-Visit https://analytics.google.com/ to visit the project / web property you just created. Visit the web property's admin settings and search for "universal analytics tracker id" to obtain the [Universal Analytics Tracker Id](https://support.google.com/analytics/answer/9539598), (e.g. "UA-XXXXXX-1" or "G-XXXXXXX"). Use this value for the `GA_TRACKER_ID` environment variable (see "Environment Variables" section below).
+Visit https://analytics.google.com/ and navigate to the web property you just created. Visit the web property's admin settings, specifically the "Property Settings", and find the numeric **Property Id** (e.g. "XXXXXXXXXX"). Use this value for the `GA_TRACKER_ID` environment variable, in this format: `"UA-XXXXXXXXXX-1"` (see "Environment Variables" section below).
 
 
 ### Environment Variables
@@ -63,8 +63,8 @@ REACT_APP_FIREBASE_DATABASE_URL="https://my-project-123.firebaseio.com"
 # GOOGLE ANALYTICS
 #
 
-# use the UA version of the measurement id from above:
 REACT_APP_GA_TRACKER_ID="UA-XXXXXXXXXX-1"
+REACT_APP_GA_DEBUG_MODE="true" # use "true" or "false"
 ```
 
 > FYI: these credentials will technically be available to the public, see [Environment Variable Security in React Apps](https://create-react-app.dev/docs/adding-custom-environment-variables/).

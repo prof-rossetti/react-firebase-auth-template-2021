@@ -1,13 +1,20 @@
 
 
 import React from 'react'
+import ReactGA from 'react-ga'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 
 //import { useAuth } from "../contexts/FirebaseAuth"
 
-function ExampleCard(props) {
-    const title = props.title || "Card Title"
+function ProductCard(props) {
+    const title = props.title || "Product XYZ"
     const imgSrc = props.imgSrc || "https://picsum.photos/180/100"
+
+    function handleClick(event){
+        console.log("YOU CLICKED PRODUCT:", title)
+        ReactGA.event({category: "Product", action: "Click", label: title})
+        // and probably do something else here ...
+    }
 
     return (
         <Card style={{ marginBottom: '20px' }}>
@@ -19,7 +26,7 @@ function ExampleCard(props) {
                 Some quick example text to build on the card title and make up the bulk of
                 the card's content.
                 </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
+                <Button variant="primary" onClick={handleClick}>Go somewhere</Button>
             </Card.Body>
         </Card>
     );
@@ -36,13 +43,13 @@ export default function Products() {
 
             <Row>
                 <Col>
-                    <ExampleCard key="row-card-1" title="Product 1" imgSrc="https://picsum.photos/id/1080/360/200"/>
+                    <ProductCard key="row-card-1" title="Product 1" imgSrc="https://picsum.photos/id/1080/360/200"/>
                 </Col>
                 <Col>
-                    <ExampleCard key="row-card-2" title="Product 2" imgSrc="https://picsum.photos/id/225/360/200"/>
+                    <ProductCard key="row-card-2" title="Product 2" imgSrc="https://picsum.photos/id/225/360/200"/>
                 </Col>
                 <Col>
-                    <ExampleCard key="row-card-3" title="Product 3" imgSrc="https://picsum.photos/id/24/360/200"/>
+                    <ProductCard key="row-card-3" title="Product 3" imgSrc="https://picsum.photos/id/24/360/200"/>
                 </Col>
             </Row>
         </Container>

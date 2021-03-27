@@ -1,7 +1,7 @@
 
 
 import React from 'react'
-//import ReactGA from 'react-ga'
+import ReactGA from 'react-ga'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 
@@ -23,10 +23,12 @@ import FlashForm from "./FlashForm"
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-//ReactGA.initialize(process.env.REACT_APP_GA_TRACKER_ID, {debug: true})
+ReactGA.initialize(process.env.REACT_APP_GA_TRACKER_ID, {
+    debug: (process.env.REACT_APP_GA_DEBUG_MODE === "true")
+})
 
 export default function App() {
-    // ReactGA.pageview(window.location.href)
+    ReactGA.pageview(window.location.href)
 
     return (
         <AuthProvider>
