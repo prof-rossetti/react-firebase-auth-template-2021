@@ -1,5 +1,5 @@
 
-import React, {useState} from 'react'
+import React from 'react'
 import {Navbar, Nav, Image} from 'react-bootstrap'
 
 import { useAuth } from "../contexts/FirebaseAuth"

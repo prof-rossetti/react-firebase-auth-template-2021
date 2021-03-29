@@ -1,12 +1,19 @@
 
 
 import React from 'react'
+import ReactGA from 'react-ga'
 import { Container, Jumbotron, Button } from 'react-bootstrap'
 
 //import { useAuth } from "../contexts/FirebaseAuth"
 
 export default function Home() {
     //const { currentUser } = useAuth()
+
+    function handleClick(event){
+        console.log("YOU CLICKED TO LEARN MORE!")
+        ReactGA.event({category: "Learn More Button", action: "Click"})
+        // do something here...
+    }
 
     return (
         <Container>
@@ -21,7 +28,7 @@ export default function Home() {
                     extra attention to featured content or information.
                 </p>
                 <p>
-                    <Button variant="primary">Learn more</Button>
+                    <Button variant="primary" onClick={handleClick}>Learn more</Button>
                 </p>
             </Jumbotron>
         </Container>
