@@ -1,7 +1,7 @@
 
 # Deployer's Guide
 
-## Setup
+## Heroku Setup
 
 Creating server:
 
@@ -49,14 +49,19 @@ heroku config:set REACT_APP_GA_DEBUG_MODE="false"
 ```
 > NOTE: with the react buildpack, need to re-deploy [AFTER](https://github.com/mars/create-react-app-buildpack/issues/178) setting env vars in order for them to be recognized
 
+## Firebase Setup
+
+"This domain (react-firebase-2021.herokuapp.com) is not authorized to run this operation. Add it to the OAuth redirect domains list in the Firebase console -> Auth section -> Sign in method tab."
+
+
 ## Deploying
 
 Deploying:
 
 ```sh
-git push heroku master
+git push heroku main
 # if deploying from a branch:
-# git push heroku mybranch:master
+# git push heroku mybranch:main
 ```
 
 Deploying will run "scripts/build" from "package.json".
