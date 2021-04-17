@@ -105,9 +105,8 @@ export default function Profile() {
             <h1>User Profile</h1>
 
             <Tab.Container id="left-tabs-example" defaultActiveKey="account" transition={false}>
-                <Row>
-                    <Col sm={3}>
-                        <Nav variant="pills" className="flex-column">
+
+                        <Nav variant="tabs" style={{marginBottom:"1em"}}>
                             <Nav.Item>
                                 <Nav.Link eventKey="account">Account</Nav.Link>
                             </Nav.Item>
@@ -116,9 +115,7 @@ export default function Profile() {
                                 <Nav.Link eventKey="orders">Orders</Nav.Link>
                             </Nav.Item>
                         </Nav>
-                    </Col>
 
-                    <Col sm={9}>
                         <Tab.Content>
                             <Tab.Pane eventKey="account">
                                 <AccountTab/>
@@ -128,8 +125,7 @@ export default function Profile() {
                                 <OrdersTab/>
                             </Tab.Pane>
                         </Tab.Content>
-                    </Col>
-                </Row>
+
             </Tab.Container>
 
         </Container>
