@@ -67,7 +67,7 @@ class OrdersTab extends PureComponent {
     render(){
         var rows = this.state.orders.map((order) => {
             var orderDate = new Date(parseInt(order.orderAt))
-
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
             return (
                 <tr key={order.id}>
                     <td>{order.id}</td>
@@ -105,7 +105,8 @@ class OrdersTab extends PureComponent {
         console.log("ORDERS TAB DID MOUNT")
         var orders = await fetchOrders(this.props.user)
         //console.log("MOUNTED WITH", products.length, "PRODUCTS")
-        this.setState({orders: orders})
+        var sortedOrders = orders.sort((a,b) => parseInt(b.orderAt) - parseInt(a.orderAt)) // DESC
+        this.setState({orders: sortedOrders})
     }
 }
 
