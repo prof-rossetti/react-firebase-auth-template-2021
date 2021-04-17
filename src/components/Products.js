@@ -25,7 +25,7 @@ function ProductCard(props) {
             console.log(results)
 
             flash({message:"Order Successful!", variant: "success"})
-            history.push("/orders")
+            history.push("/profile#orders")
         } else {
             flash({message:"Oh, to order you must be logged in!", variant: "warning"})
             history.push("/login")

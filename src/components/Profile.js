@@ -66,12 +66,14 @@ class OrdersTab extends PureComponent {
 
     render(){
         var rows = this.state.orders.map((order) => {
+            var orderDate = new Date(parseInt(order.orderAt))
+
             return (
-                <tr>
+                <tr key={order.id}>
                     <td>{order.id}</td>
                     <td>{order.productName}</td>
                     <td>{order.productPrice}</td>
-                    <td>{order.orderAt}</td>
+                    <td>{orderDate.toLocaleString()}</td>
                 </tr>
             )
         })
@@ -110,11 +112,17 @@ class OrdersTab extends PureComponent {
 export default function Profile() {
     const { currentUser } = useAuth()
 
+    //console.log("WINDOW LOCATION", window.location)
+    var activeTabKey = "account"
+    if(window.location.hash === "#orders"){
+        activeTabKey = "orders"
+    }
+
     return (
         <Container>
             <h1>User Profile</h1>
 
-            <Tab.Container id="left-tabs-example" defaultActiveKey="account" transition={false}>
+            <Tab.Container id="left-tabs-example" defaultActiveKey={activeTabKey} transition={false}>
                 <Nav variant="tabs" style={{marginBottom:"1em"}}>
                     <Nav.Item>
                         <Nav.Link eventKey="account">Account</Nav.Link>
