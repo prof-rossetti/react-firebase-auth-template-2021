@@ -87,3 +87,25 @@ export async function orderProduct(user, product) {
 
     return newOrder
 }
+
+export async function fetchOrders(user) {
+    console.log("FETCHING ORDERS")
+    console.log("USER:", user.uid, user.email)
+
+    // https://firebase.google.com/docs/firestore/query-data/queries
+    const docs = await db.collection("orders").where('userUid', '==', user.uid).get()
+    console.log("DOCS:", docs.size)
+
+    // instead of returning the documents with separate ids and data,
+    // ... let's create a single object with both the id and the data
+    // ... to make them easier to process and loop through later
+    var orders = []
+    docs.forEach((doc) => {
+        //console.log("DOC ID:", doc.id, "DATA", doc.data())
+        var order = doc.data()
+        order["id"] = doc.id
+        orders.push(order)
+    })
+    console.log("ORDERS:", orders.length)
+    return orders
+}

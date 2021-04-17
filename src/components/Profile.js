@@ -1,15 +1,16 @@
 
 
-import React from 'react'
+import React, {PureComponent} from 'react'
 import { useHistory } from 'react-router-dom'
 import { Container, Card, Button, Image, Tab, Nav, Row, Col, Table } from 'react-bootstrap'
 
-import app from "../firebase"
+import app, {fetchOrders} from "../firebase"
 import { useAuth } from "../contexts/FirebaseAuth"
 import { useFlashUpdate } from "../contexts/FlashContext"
 
-function AccountTab(){
-    const { currentUser } = useAuth()
+function AccountTab(props){
+    const user = props.user
+
     const flash = useFlashUpdate()
     const history = useHistory()
 
@@ -30,7 +31,7 @@ function AccountTab(){
                     <Card >
                         <Card.Body>
                             <Image roundedCircle
-                                    src={currentUser.photoURL}
+                                    src={user.photoURL}
                                     alt="user profile"
                                     style={{
                                         marginBottom:15,
@@ -42,9 +43,9 @@ function AccountTab(){
                                     //height="65px"
                                 />
 
-                            <div>Name: <pre>{currentUser.displayName}</pre></div>
-                            <div>Email: <pre>{currentUser.email}</pre></div>
-                            <div>User Id: <pre>{currentUser.uid}</pre></div>
+                            <div>Name: <pre>{user.displayName}</pre></div>
+                            <div>Email: <pre>{user.email}</pre></div>
+                            <div>User Id: <pre>{user.uid}</pre></div>
                         </Card.Body>
                     </Card>
 
@@ -57,77 +58,83 @@ function AccountTab(){
     )
 }
 
-function OrdersTab(){
+class OrdersTab extends PureComponent {
+    constructor(props) {
+        super(props)
+        this.state = {orders: []}
+    }
 
-    return (
-        <>
-            <h2>Order History</h2>
-            <p className="lead">Here are your recent orders...</p>
+    render(){
+        var rows = this.state.orders.map((order) => {
+            return (
+                <tr>
+                    <td>{order.id}</td>
+                    <td>{order.productName}</td>
+                    <td>{order.productPrice}</td>
+                    <td>{order.orderAt}</td>
+                </tr>
+            )
+        })
 
-            <Table striped bordered hover responsive>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Username</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td colSpan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                </tbody>
-            </Table>
+        return (
+            <>
+                <h2>Order History</h2>
+                <p className="lead">Here are your recent orders...</p>
 
-        </>
-    )
+                <Table striped bordered hover responsive>
+                    <thead>
+                        <tr>
+                            <th>Order Id</th>
+                            <th>Product Name</th>
+                            <th>Product Price</th>
+                            <th>Order Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {rows}
+                    </tbody>
+                </Table>
+
+            </>
+        )
+    }
+
+    async componentDidMount(){
+        console.log("ORDERS TAB DID MOUNT")
+        var orders = await fetchOrders(this.props.user)
+        //console.log("MOUNTED WITH", products.length, "PRODUCTS")
+        this.setState({orders: orders})
+    }
 }
 
 export default function Profile() {
+    const { currentUser } = useAuth()
 
     return (
         <Container>
             <h1>User Profile</h1>
 
             <Tab.Container id="left-tabs-example" defaultActiveKey="account" transition={false}>
+                <Nav variant="tabs" style={{marginBottom:"1em"}}>
+                    <Nav.Item>
+                        <Nav.Link eventKey="account">Account</Nav.Link>
+                    </Nav.Item>
 
-                        <Nav variant="tabs" style={{marginBottom:"1em"}}>
-                            <Nav.Item>
-                                <Nav.Link eventKey="account">Account</Nav.Link>
-                            </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link eventKey="orders">Orders</Nav.Link>
+                    </Nav.Item>
+                </Nav>
 
-                            <Nav.Item>
-                                <Nav.Link eventKey="orders">Orders</Nav.Link>
-                            </Nav.Item>
-                        </Nav>
+                <Tab.Content>
+                    <Tab.Pane eventKey="account">
+                        <AccountTab user={currentUser}/>
+                    </Tab.Pane>
 
-                        <Tab.Content>
-                            <Tab.Pane eventKey="account">
-                                <AccountTab/>
-                            </Tab.Pane>
-
-                            <Tab.Pane eventKey="orders">
-                                <OrdersTab/>
-                            </Tab.Pane>
-                        </Tab.Content>
-
+                    <Tab.Pane eventKey="orders">
+                        <OrdersTab user={currentUser}/>
+                    </Tab.Pane>
+                </Tab.Content>
             </Tab.Container>
-
         </Container>
     )
 }
