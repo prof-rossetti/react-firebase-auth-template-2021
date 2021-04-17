@@ -5,31 +5,27 @@ import { useHistory } from 'react-router-dom'
 import ReactGA from 'react-ga'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 
-import {fetchProducts} from "../firebase"
+import {fetchProducts, orderProduct} from "../firebase"
 import { useAuth } from "../contexts/FirebaseAuth"
 import { useFlashUpdate } from "../contexts/FlashContext"
 
 function ProductCard(props) {
     const product = props.product
-    //const title = props.title || "Product XYZ"
-    //const description = props.description || "An amazing product anyone would love to buy!"
-    //const imgSrc = props.imgSrc || "https://picsum.photos/180/100"
 
     const { currentUser } = useAuth()
     const flash = useFlashUpdate()
     const history = useHistory()
 
-    function handleClick(){
+    async function handleClick(){
         console.log("YOU CLICKED PRODUCT:", product.name)
         ReactGA.event({category: "Product", action: "Click", label: product.name})
 
         if(currentUser){
-            console.log("----------------------")
-            console.log("SENDING THE ORDER...")
-            console.log("USER:", currentUser.uid, currentUser.email)
-            console.log("PRODUCT:", product.id, product.name)
+            var results = await orderProduct(currentUser, product)
+            console.log(results)
 
-
+            flash({message:"Order Successful!", variant: "success"})
+            history.push("/orders")
         } else {
             flash({message:"Oh, to order you must be logged in!", variant: "warning"})
             history.push("/login")
@@ -58,7 +54,7 @@ export default class Products extends PureComponent {
         var cols = this.state.products.map((product) => {
             return (
                 <Col key={product.id}>
-                    <ProductCard key={product.id} product={product}/>
+                    <ProductCard product={product}/>
                 </Col>
             )
         })
@@ -79,7 +75,7 @@ export default class Products extends PureComponent {
     async componentDidMount(){
         console.log("PRODUCTS PAGE DID MOUNT")
         var products = await fetchProducts()
-        console.log("MOUNTED WITH", products.length, "PRODUCTS")
+        //console.log("MOUNTED WITH", products.length, "PRODUCTS")
         this.setState({products: products})
     }
 
