@@ -21,13 +21,15 @@ firebase init # (from root dir of this repo)
 #... choose Hosting
 # ... use existing app, and choose it
 # ... choose "build" instead of "public"
-# ... SPA: no
+# ... SPA: yes
 # ... automatic builds (no, maybe later)
 ```
 
+  + https://www.robinwieruch.de/firebase-deploy-react-js
+
 ## Deploying
 
-https://firebase.google.com/docs/cli#deployment
+  + https://firebase.google.com/docs/cli#deployment
 
 ```sh
 firebase deploy
