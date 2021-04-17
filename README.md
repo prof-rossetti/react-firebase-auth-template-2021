@@ -37,7 +37,7 @@ Click the gear icon to visit the "Project Settings" page, locate the "Your Apps"
 
 Follow [this guide](https://firebase.google.com/docs/firestore/quickstart) to create a Firestore database for the Firebase project you just created. When you create the database, "start in test mode".
 
-After the database has been created, create a new collection called "products" with a number of documents inside. Create each document using an auto-generated "id" attribute, as well as the attributes "name" (string), "description" (string), "price" (number) and "url" (string). Populate the documents based on the following examples:
+After the database has been created, create a new collection called "products" with a number of documents inside. Create each document using an auto-generated `id` attribute, as well as the attributes `name` (string), `description` (string), `price` (number) and `url` (string). Populate the documents based on the following examples:
 
 name | description | price | url
 --- | --- | --- | ---
@@ -45,6 +45,15 @@ Strawberries | Juicy organic strawberries. | 4.99 | https://picsum.photos/id/108
 Cup of Tea | An individually-prepared tea or coffee of choice. | 3.49 | https://picsum.photos/id/225/360/200
 Textbook | It has all the answers. | 129.99 | https://picsum.photos/id/24/360/200
 
+
+Also create a new collection called "orders", with the following attributes:
+
+  + `id` (auto-generated)
+  + `userUid` (string)
+  + `userEmail` (string)
+  + `productId` (string)
+  + `productPrice` (number)
+  + `orderAt` (number)
 
 ### Google Analytics Setup
 
