@@ -1,32 +1,44 @@
 
 
 import React, {PureComponent} from 'react'
+import { useHistory } from 'react-router-dom'
 import ReactGA from 'react-ga'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 
-import {fetchProducts} from "../firebase"
+import {fetchProducts, orderProduct} from "../firebase"
+import { useAuth } from "../contexts/FirebaseAuth"
+import { useFlashUpdate } from "../contexts/FlashContext"
 
 function ProductCard(props) {
-    const title = props.title || props.name || "Product XYZ"
-    const description = props.description || "An amazing product anyone would love to buy!"
-    const imgSrc = props.imgSrc || props.image_url || "https://picsum.photos/180/100"
+    const product = props.product
 
-    function handleClick(event){
-        console.log("YOU CLICKED PRODUCT:", title)
-        ReactGA.event({category: "Product", action: "Click", label: title})
-        // and probably do something else here ...
+    const { currentUser } = useAuth()
+    const flash = useFlashUpdate()
+    const history = useHistory()
 
+    async function handleClick(){
+        console.log("YOU CLICKED PRODUCT:", product.name)
+        ReactGA.event({category: "Product", action: "Click", label: product.name})
 
+        if(currentUser){
+            var results = await orderProduct(currentUser, product)
+            console.log(results)
 
+            flash({message:"Order Successful!", variant: "success"})
+            history.push("/profile#orders")
+        } else {
+            flash({message:"Oh, to order you must be logged in!", variant: "warning"})
+            history.push("/login")
+        }
     }
 
     return (
         <Card style={{ marginBottom: '20px' }}>
-            <Card.Img variant="top" src={imgSrc} />
+            <Card.Img variant="top" src={product.image_url} />
             <Card.Body>
-                <Card.Title>{title}</Card.Title>
-                <Card.Text>{description}</Card.Text>
-                <Button variant="primary" onClick={handleClick}>Go somewhere</Button>
+                <Card.Title>{product.name}</Card.Title>
+                <Card.Text>{product.description}</Card.Text>
+                <Button variant="primary" onClick={handleClick}>Order now!</Button>
             </Card.Body>
         </Card>
     );
@@ -42,11 +54,7 @@ export default class Products extends PureComponent {
         var cols = this.state.products.map((product) => {
             return (
                 <Col key={product.id}>
-                    <ProductCard key={product.id}
-                        title={product.name}
-                        description={product.description}
-                        imgSrc={product.image_url}
-                    />
+                    <ProductCard product={product}/>
                 </Col>
             )
         })
@@ -67,7 +75,7 @@ export default class Products extends PureComponent {
     async componentDidMount(){
         console.log("PRODUCTS PAGE DID MOUNT")
         var products = await fetchProducts()
-        console.log("MOUNTED WITH", products.length, "PRODUCTS")
+        //console.log("MOUNTED WITH", products.length, "PRODUCTS")
         this.setState({products: products})
     }
 

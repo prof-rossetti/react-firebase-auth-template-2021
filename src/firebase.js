@@ -35,20 +35,77 @@ export default app
 const db = firebase.firestore(app)
 
 export async function fetchProducts() {
-    // https://googleapis.dev/nodejs/firestore/latest/CollectionReference.html#get
-    // https://googleapis.dev/nodejs/firestore/latest/QuerySnapshot.html
     console.log("FETCHING PRODUCTS...")
 
+    // https://googleapis.dev/nodejs/firestore/latest/CollectionReference.html#get
     const docs = await db.collection("products").get()
     console.log("DOCS:", docs.size)
 
-    var products = [] // Array.from(docs)
+    // https://googleapis.dev/nodejs/firestore/latest/QuerySnapshot.html
+    // instead of returning the products as documents with separate ids and data
+    // let's create a single object with both the id and the data
+    // to make them easier to process and loop through later
+    var products = []
     docs.forEach((doc) => {
-        console.log("DOC ID:", doc.id, "DATA", doc.data())
-        var product = doc.data()
-        product["id"] = doc.id
+        //console.log("DOC ID:", doc.id, "DATA", doc.data())
+        var product = doc.data() // create a new object with the product info
+        product["id"] = doc.id // merge the id with the object
         products.push(product)
     })
-    console.log("PRODUCTS:", products.length)
+    //console.log("PRODUCTS:", products.length)
     return products
+}
+
+export async function orderProduct(user, product) {
+    //console.log("ORDERING PRODUCT")
+    //console.log("USER:", user.uid, user.email)
+    //console.log("PRODUCT:", product.id, product.name, product.price)
+
+    //var newOrder = {
+    //    "productId": product.id,
+    //    "userUid": user.uid,
+    //    "orderAt": Date.now().toFixed()
+    //} // consider saving the entire user and product info (more convenient, but less efficient from a storage standpoint)
+
+    var newOrder = {
+        "userUid": user.uid,
+        "userEmail": user.email,
+        "productId": product.id,
+        "productName": product.name,
+        "productPrice": product.price,
+        "orderAt": Date.now().toFixed()
+    }
+    console.log("NEW ORDER", newOrder)
+
+    // https://firebase.google.com/docs/database/admin/save-data
+    // https://googleapis.dev/nodejs/firestore/latest/CollectionReference.html
+
+    var ordersRef = db.collection("orders")
+    //console.log("ORDERS COLLECTION", ordersRef)
+
+    await ordersRef.add(newOrder)
+
+    return newOrder
+}
+
+export async function fetchOrders(user) {
+    console.log("FETCHING ORDERS")
+    console.log("USER:", user.uid, user.email)
+
+    // https://firebase.google.com/docs/firestore/query-data/queries
+    const docs = await db.collection("orders").where('userUid', '==', user.uid).get()
+    console.log("DOCS:", docs.size)
+
+    // instead of returning the documents with separate ids and data,
+    // ... let's create a single object with both the id and the data
+    // ... to make them easier to process and loop through later
+    var orders = []
+    docs.forEach((doc) => {
+        //console.log("DOC ID:", doc.id, "DATA", doc.data())
+        var order = doc.data()
+        order["id"] = doc.id
+        orders.push(order)
+    })
+    console.log("ORDERS:", orders.length)
+    return orders
 }
